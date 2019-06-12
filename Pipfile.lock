@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4aad7734043612f2e9b3dc29a9a0f1936341001a950d6fc0c3c9ac99c228f7f3"
+            "sha256": "38a6583030320ac01f77803222b78f586813c4b93f9296a6d498fee00ef4c2c1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -15,7 +15,12 @@
             }
         ]
     },
-    "default": {},
+    "default": {
+        "pycompose": {
+            "editable": true,
+            "path": "."
+        }
+    },
     "develop": {
         "appdirs": {
             "hashes": [
