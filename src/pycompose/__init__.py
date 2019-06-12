@@ -1,24 +1,9 @@
-"""A simple way to inject composition through inheritance syntax
-
-Example:
->>> class A:
-...     field = "123"
->>> class B(Compose(A, "field")):
-...     ...
->>> b = B()
->>> print(b.a)
-<__main__.A object at ...>
->>> print(b.field)
-123
->>> class C(Compose(A, ("field", "attr"))):
-...     ...
->>> c = C()
->>> print(b.attr)
-123
-"""
 from operator import attrgetter
 import sys
 from typing import Union, Tuple, Any, Dict
+
+
+__all__ = ("Compose",)
 
 
 def Compose(
@@ -38,23 +23,32 @@ def Compose(
     :return: the inheritable type
     """
     name_ = name or f"_{type_.__name__.lower()}"
+    fields_ = [
+        (field, field) if not isinstance(field, tuple) else field for field in fields
+    ]
 
     class InheritableComposition:
-        def __init__(self, *_args, **_kwargs):
-            setattr(self, name_, kwargs.pop(name, type_(*args, **kwargs)))
-            super().__init__(*_args, **_kwargs)
+        def __init__(self, *args_, **kwargs_):
+            obj = kwargs_.pop(name_, type_(*args, **kwargs))
+            if any(not hasattr(obj, attr) for attr, _ in fields_):
+                raise TypeError(
+                    "Can't initialise class due to missing fields required by composition "
+                    f"(composite: {self.__class__}, composee: {type_}).\n"
+                    f"Missing fields: {[attr for attr, _ in fields_ if not hasattr(obj, attr)]}"
+                )
+            setattr(self, name_, obj)
+            super().__init__(*args_, **kwargs_)
 
         # Magical frame hack, to add properties...
         frame = sys._getframe()
-        for field in fields:
-            origin, dest = (field, field) if not isinstance(field, tuple) else field
-            frame.f_locals[dest] = build_field(name_, origin)
-        del frame, dest, origin, field
+        for origin, dest in fields_:
+            frame.f_locals[dest] = _build_field(name_, origin)
+        del frame, dest, origin
 
     return InheritableComposition
 
 
-def build_field(name: str, field: str) -> property:
+def _build_field(name: str, field: str) -> property:
     """Build a single forwarding property to encompass the requested field
     
     :param name: the name given to the composee
@@ -73,30 +67,3 @@ def build_field(name: str, field: str) -> property:
         return delattr(obj_getter(self), field)
 
     return property(getter, setter, deleter)
-
-
-if __name__ == "__main__":
-
-    class A:
-        test1 = "123"
-
-        def hello(self):
-            print("A")
-
-    class B:
-        test2 = "456"
-
-        def hello(self):
-            print("B")
-
-    class C(
-        Compose(A, "test1", ("hello", "helloA")),
-        Compose(B, "test2", ("hello", "helloB")),
-    ):
-        ...
-
-    c = C()
-    print(c.test1 + c.test2)
-    c.helloA()
-    c.helloB()
-    print(dir(c))
