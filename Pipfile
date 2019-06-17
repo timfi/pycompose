@@ -6,7 +6,6 @@ verify_ssl = true
 [dev-packages]
 mypy = "*"
 black = "*"
-flake8 = "*"
 twine = "*"
 
 [packages]

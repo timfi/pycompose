@@ -28,6 +28,11 @@ def Compose(
     ]
 
     class InheritableComposition:
+        def __init_subclass__(cls):
+            super().__init_subclass__()
+            for origin, dest in fields_:
+                setattr(cls, dest, _build_field(name_, origin))
+
         def __init__(self, *args_, **kwargs_):
             obj = kwargs_.pop(name_, type_(*args, **kwargs))
             if any(not hasattr(obj, attr) for attr, _ in fields_):
@@ -38,12 +43,6 @@ def Compose(
                 )
             setattr(self, name_, obj)
             super().__init__(*args_, **kwargs_)
-
-        # Magical frame hack, to add properties...
-        frame = sys._getframe()
-        for origin, dest in fields_:
-            frame.f_locals[dest] = _build_field(name_, origin)
-        del frame, dest, origin
 
     return InheritableComposition
 
