@@ -1,9 +1,9 @@
+"""Composition through Inheritance-Syntax."""
 from operator import attrgetter
-import sys
-from typing import Union, Tuple, Any, Dict
-
+from typing import Any, Dict, Tuple, Union
 
 __all__ = ("Compose",)
+__version__ = "1.2"
 
 
 def Compose(
@@ -13,8 +13,8 @@ def Compose(
     args: Tuple = tuple(),
     kwargs: Dict[str, Any] = dict(),
 ) -> type:
-    """Generate a new type that encompasses the forwarding of the given fields
-    
+    """Generate a new type that encompasses the forwarding of the given fields.
+
     :param type_: the type to composee
     :param *fields: the fields to forward
     :param name: the name to give the composee, defaults to f"_{type_.__name__.lower()}"
@@ -48,8 +48,8 @@ def Compose(
 
 
 def _build_field(name: str, field: str) -> property:
-    """Build a single forwarding property to encompass the requested field
-    
+    """Build a single forwarding property to encompass the requested field.
+
     :param name: the name given to the composee
     :param field: the field to forward
     :return: the generated property

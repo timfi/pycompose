@@ -1,6 +1,15 @@
 # PyCompose
 _A simple way to inject composition through inheritance syntax._
 
+[![PyPI - Version](https://img.shields.io/pypi/v/pycompose)](https://pypi.org/project/pycompose)
+[![PyPI - Status](https://img.shields.io/pypi/status/pycompose)](https://pypi.org/project/pycompose)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pycompose)](https://pypi.org/project/pycompose)
+[![PyPI - License](https://img.shields.io/pypi/l/pycompose)](https://opensource.org/licenses/MIT)
+
+[![Build Status](https://img.shields.io/github/workflow/status/tim-fi/pycompose/Tests?logo=github)](https://github.com/tim-fi/pycompose/actions?query=workflow%3ATests)
+[![codecov](https://codecov.io/gh/tim-fi/pycompose/branch/master/graph/badge.svg)](https://codecov.io/gh/tim-fi/pycompose)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 ## Inspirations
 The following links served as inpiration during the writing of this, and as a in-depth explanation of what actually is composition and its benefits and drawbacks versus inheritance.
 * [Ariel Ortiz's 2019 PyCon talk](https://www.youtube.com/watch?v=YXiaWtc0cgE)

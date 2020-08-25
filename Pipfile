@@ -1,18 +1,26 @@
 [[source]]
 name = "pypi"
-url = "https://pypi.org/simple"
+url = "https://pypi.python.org/simple"
 verify_ssl = true
 
-[dev-packages]
-mypy = "*"
-black = "*"
-twine = "*"
+[requires]
+python_version = "3.8"
 
 [packages]
-pycompose = {editable = true,path = "."}
+pyecs = {editable = true,path = "."}
 
-[requires]
-python_version = "3.7"
+[dev-packages]
+black = "*"
+flake8 = "*"
+isort = "*"
+mypy = "*"
+pre-commit = "*"
+pytest = "*"
+pytest-cov = "*"
+twine = "*"
+setuptools = "*"
+wheel = "*"
+pydocstyle = "*"
 
 [pipenv]
 allow_prereleases = true
