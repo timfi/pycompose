@@ -6,8 +6,8 @@ _A simple way to inject composition through inheritance syntax._
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pycompose)](https://pypi.org/project/pycompose)
 [![PyPI - License](https://img.shields.io/pypi/l/pycompose)](https://opensource.org/licenses/MIT)
 
-[![Build Status](https://img.shields.io/github/workflow/status/tim-fi/pycompose/Tests?logo=github)](https://github.com/tim-fi/pycompose/actions?query=workflow%3ATests)
-[![codecov](https://codecov.io/gh/tim-fi/pycompose/branch/master/graph/badge.svg)](https://codecov.io/gh/tim-fi/pycompose)
+[![Build Status](https://img.shields.io/github/workflow/status/timfi/pycompose/Tests?logo=github)](https://github.com/timfi/pycompose/actions?query=workflow%3ATests)
+[![codecov](https://codecov.io/gh/timfi/pycompose/branch/master/graph/badge.svg)](https://codecov.io/gh/timfi/pycompose)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ## Inspirations

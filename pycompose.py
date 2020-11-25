@@ -3,7 +3,7 @@ from operator import attrgetter
 from typing import Any, Dict, Tuple, Union
 
 __all__ = ("Compose",)
-__version__ = "1.2"
+__version__ = "1.2.1"
 
 
 def Compose(
